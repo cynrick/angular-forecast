@@ -1,5 +1,6 @@
 var weatherApp = angular.module('weatherApp', ['ngRoute', 'ngResource']);
 
+// Routes
 weatherApp.config(function($routeProvider) {
 
   $routeProvider
@@ -21,12 +22,29 @@ weatherApp.config(function($routeProvider) {
 
 });
 
+// Custom Service
 weatherApp.service('cityService', function() {
 
   this.city = "";
 
 });
 
+// Custom Directive
+weatherApp.directive("weatherReport", function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'directives/weatherReport.html',
+    replace: true,
+    scope: {
+      weatherObj: '=',
+      convertToStandard: '&',
+      convertToDate: '&',
+      dateFormat: '@'
+    }
+  };
+});
+
+// Controllers
 weatherApp.controller('homeController', ['$scope', 'cityService', function($scope, cityService) {
 
   $scope.city = cityService.city;

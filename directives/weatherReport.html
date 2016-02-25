@@ -1,0 +1,9 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{ convertToDate({ date: weatherObj.dt }) | date: dateFormat }}</h3>
+  </div>
+  <div class="panel-body">
+    Max Temperature: {{ convertToStandard({ temp: weatherObj.temp.max }) }}&deg;F<br />
+    Min Temperature: {{ convertToStandard({ temp: weatherObj.temp.min }) }}&deg;F
+  </div>
+</div>

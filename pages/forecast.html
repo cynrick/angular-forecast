@@ -9,15 +9,7 @@ Days: <a href="#/forecast/3" ng-class="{ 'bg-primary': days === '3' }">3</a> |
 <div ng-repeat="weather in weatherResult.list">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">{{ convertToDate(weather.dt) | date: 'MMM d, yyyy (EEEE)' }}</h3>
-        </div>
-        <div class="panel-body">
-          Max Temperature: {{ convertToFahrenheit(weather.temp.max) }}&deg;F<br />
-          Min Temperature: {{ convertToFahrenheit(weather.temp.min) }}&deg;F
-        </div>
-      </div>
+      <weather-report weather-obj="weather" convert-to-standard="convertToFahrenheit(temp)" convert-to-date="convertToDate(date)" date-format="MMM d, yyyy (EEEE)"></weather-report>
     </div>
   </div>
 </div>
