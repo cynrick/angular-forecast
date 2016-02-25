@@ -12,17 +12,14 @@ weatherApp.controller('homeController', ['$scope', '$location', 'cityService', f
 
 }]);
 
-weatherApp.controller('forecastController', ['$scope', '$resource', '$routeParams', 'cityService', function($scope, $resource, $routeParams, cityService) {
+weatherApp.controller('forecastController', ['$scope', '$resource', '$routeParams', 'cityService', 'weatherService', 
+  function($scope, $resource, $routeParams, cityService, weatherService) {
 
   $scope.city = cityService.city;
 
   $scope.days = $routeParams.days || '3';
 
-  $scope.weatherAPI = $resource(weather.API_URL, { callback: "JSON_CALLBACK" }, { get: { method: "JSONP" } });
-
-  $scope.weatherResult = $scope.weatherAPI.get({ q: $scope.city, cnt: $scope.days, appid: weather.API_KEY });
-
-  console.log($scope.weatherResult);
+  $scope.weatherResult = weatherService.GetWeather($scope.city, $scope.days);
 
   $scope.convertToFahrenheit = function(degK) {
     return Math.round((1.8 * (degK - 273)) + 32);
