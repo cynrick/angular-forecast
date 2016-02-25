@@ -23,7 +23,7 @@ weatherApp.config(function($routeProvider) {
 
 weatherApp.service('cityService', function() {
 
-  this.city = "San Francisco, CA";
+  this.city = "";
 
 });
 
@@ -41,7 +41,7 @@ weatherApp.controller('forecastController', ['$scope', '$resource', '$routeParam
 
   $scope.city = cityService.city;
 
-  $scope.days = $routeParams.days || 5;
+  $scope.days = $routeParams.days || '3';
 
   $scope.weatherAPI = $resource(weather.API_URL, { callback: "JSON_CALLBACK" }, { get: { method: "JSONP" } });
 
